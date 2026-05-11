@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sorry My Love ❤️</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body{
+      overflow-x:hidden;
+      background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+      color:white;
+    }
+
+    section{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
+      padding:20px;
+      position:relative;
+    }
+
+    h1{
+      font-size:4rem;
+      margin-bottom:20px;
+    }
+
+    .heart{
+      font-size:5rem;
+      animation:pulse 1.5s infinite;
+    }
+
+    .message-box{
+      background:rgba(255,255,255,0.15);
+      backdrop-filter:blur(10px);
+      padding:40px;
+      border-radius:25px;
+      max-width:700px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .message-box p{
+      font-size:1.2rem;
+      line-height:1.8;
+    }
+
+    .question-box{
+      margin-top:30px;
+    }
+
+    .question-box h2{
+      margin-bottom:30px;
+      font-size:2rem;
+    }
+
+    button{
+      padding:15px 25px;
+      border:none;
+      border-radius:50px;
+      cursor:pointer;
+      font-size:1rem;
+      margin:10px;
+      transition:0.3s;
+      position:relative;
+    }
+
+    #yesBtn{
+      background:white;
+      color:#ff4d6d;
+      font-weight:bold;
+    }
+
+    #yesBtn:hover{
+      transform:scale(1.1);
+    }
+
+    #noBtn{
+      background:#ff4d6d;
+      color:white;
+      position:absolute;
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    #finalMessage{
+      font-size:2rem;
+      margin-top:20px;
+      animation:fadeIn 2s ease;
+    }
+
+    .rose{
+      position:fixed;
+      top:-10%;
+      font-size:30px;
+      animation:fall linear forwards;
+      z-index:999;
+    }
+
+    audio{
+      display:none;
+    }
+
+    @keyframes pulse{
+      0%{transform:scale(1);}
+      50%{transform:scale(1.2);}
+      100%{transform:scale(1);}
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes fall{
+      to{
+        transform:translateY(120vh) rotate(360deg);
+        opacity:0;
+      }
+    }
+
+    .floating-hearts span{
+      position:absolute;
+      bottom:-50px;
+      font-size:25px;
+      animation:float 10s linear infinite;
+      opacity:0.7;
+    }
+
+    .floating-hearts span:nth-child(1){left:10%;}
+    .floating-hearts span:nth-child(2){left:30%;}
+    .floating-hearts span:nth-child(3){left:50%;}
+    .floating-hearts span:nth-child(4){left:70%;}
+    .floating-hearts span:nth-child(5){left:90%;}
+
+    @keyframes float{
+      0%{
+        transform:translateY(0);
+        opacity:0;
+      }
+      30%{
+        opacity:1;
+      }
+      100%{
+        transform:translateY(-120vh);
+        opacity:0;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- SONG -->
+  <audio autoplay loop>
+    <source src="your-song.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- FLOATING HEARTS -->
+  <div class="floating-hearts">
+    <span>❤️</span>
+    <span>💕</span>
+    <span>💖</span>
+    <span>💘</span>
+    <span>❤️</span>
+  </div>
+
+  <!-- FIRST SECTION -->
+  <section>
+    <div class="heart">❤️</div>
+
+    <h1>I'm Sorry My Love</h1>
+
+    <div class="message-box">
+      <p>
+        I know I made mistakes and hurt you,
+        and I hate the fact that I made you sad.
+        You are the most beautiful part of my life
+        and I never want to lose you.
+        I’m truly sorry baby...
+        Please forgive me once.
+        I promise I’ll love you better every single day. ❤️
+      </p>
+    </div>
+  </section>
+
+  <!-- QUESTION SECTION -->
+  <section>
+
+    <div class="question-box">
+
+      <h2>
+        Pijj forgive me my babay? 🥺❤️
+      </h2>
+
+      <button id="yesBtn">
+        Come Here My Baby, I Forgive You ❤️
+      </button>
+
+      <button id="noBtn">
+        No 😒
+      </button>
+
+      <div id="finalMessage" class="hidden">
+        YAYYYYY ❤️🥺<br>
+        I LOVE YOU SO MUCH BABY 🌹
+      </div>
+
+    </div>
+
+  </section>
+
+<script>
+
+  // NO BUTTON MOVES
+  const noBtn = document.getElementById("noBtn");
+
+  noBtn.addEventListener("mouseover", moveButton);
+  noBtn.addEventListener("click", moveButton);
+
+  function moveButton(){
+
+    const x = Math.floor(Math.random() * (window.innerWidth - 120));
+    const y = Math.floor(Math.random() * (window.innerHeight - 80));
+
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
+  }
+
+  // YES BUTTON
+  const yesBtn = document.getElementById("yesBtn");
+  const finalMessage = document.getElementById("finalMessage");
+
+  yesBtn.addEventListener("click", () => {
+
+    finalMessage.classList.remove("hidden");
+
+    // ROSE SHOWER
+    for(let i = 0; i < 80; i++){
+
+      const rose = document.createElement("div");
+
+      rose.classList.add("rose");
+
+      rose.innerHTML = "🌹";
+
+      rose.style.left = Math.random() * 100 + "vw";
+
+      rose.style.animationDuration =
+        (Math.random() * 3 + 2) + "s";
+
+      document.body.appendChild(rose);
+
+      setTimeout(() => {
+        rose.remove();
+      }, 5000);
+    }
+
+  });
+
+</script>
+
+</body>
+</html>
